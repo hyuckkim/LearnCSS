@@ -22,7 +22,6 @@ var info = new CssRoot(
         ]),
         new CssInfo("article",
         [
-            new CssSyntex("color", ["inherit"]),
             new CssSyntex("background", ["#ffffff"]),
             new CssSyntex("border", ["1px", "solid", "#000000"]),
             new CssSyntex("width", ["500px"]),
