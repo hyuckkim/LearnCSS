@@ -32,7 +32,7 @@ function bulidCssInfo() {
     textarea.innerHTML = info.buildHTML();
     ApplyCss();
 }
-function CallRewriteCss(code: string, data: string) {
+function CallRewriteCss(code: string, data: HTMLInputElement) {
     RewriteCss(code, data);
     ApplyCss();
 }
@@ -41,7 +41,7 @@ var style = document.getElementById("modify") as HTMLStyleElement;
 function ApplyCss() {
     style.innerText = info.buildCSS();
 }
-function RewriteCss(code: string, data: string) {
+function RewriteCss(code: string, data: HTMLInputElement) {
     let split = code.split('/');
     if (split.length != 3) return;
 

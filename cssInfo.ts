@@ -25,7 +25,7 @@ export class CssInfo {
         result += `}`;
         return result;
     }
-    public rewrite(syntex: string, attributeNo: number, value: string) {
+    public rewrite(syntex: string, attributeNo: number, value: HTMLInputElement) {
         this.syntexes.forEach(e => {
             if (e.name == syntex) {
                 e.rewrite(attributeNo, value);

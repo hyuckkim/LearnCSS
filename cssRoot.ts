@@ -30,7 +30,7 @@ export class CssRoot {
         element: string, 
         syntex: string, 
         attributeNo: number, 
-        value: string) {
+        value: HTMLInputElement) {
         this.data.forEach(e => {
             if (e.name == element) {
                 e.rewrite(syntex, attributeNo, value);

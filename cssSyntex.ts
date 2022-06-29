@@ -16,7 +16,7 @@ export class CssSyntex {
             result += `<input 
                 class="hljs-number"
                 value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this.value);">`;
+                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this);">`;
             i++;
         });
 
@@ -31,7 +31,8 @@ export class CssSyntex {
         result += `;`;
         return result;
     }
-    public rewrite(attributeNo: number, value: string) {
-        this.contents[attributeNo] = value;
+    public rewrite(attributeNo: number, value: HTMLInputElement) {
+        this.contents[attributeNo] = value.value;
+        value.style.width = `${Math.min(250, value.value.length * 12)}px`;
     }
 }
