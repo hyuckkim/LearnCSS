@@ -1,14 +1,15 @@
-<!doctype html>
+color:#800;/* color:#800; */<!doctype html>
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <link href="http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
         <title>Change CSS</title>
     </head>
     <body>
         <header class="head">Change <b>CSS</b></header>
         <main class="container">
-            <div id="textarea">
-            </div>
+            <pre id="textarea">
+            </pre>
             <div id="elementarea">
                 <article id="editable">
                     <h1>별 헤는 밤</h1>
@@ -18,7 +19,78 @@
                 </article>
             </div>
         </main>
+        <footer class="foot">
+            <select id="theme" onchange="changeTheme()">
+                <option value="a11y-dark">a11y-dark</option>
+                <option value="a11y-light">a11y-light</option>
+                <option value="agate">agate</option>
+                <option value="androidstudio">androidstudio</option>
+                <option value="an-old-hope">an-old-hope</option>
+                <option value="arduino-light">arduino-light</option>
+                <option value="arta">arta</option>
+                <option value="ascetic">ascetic</option>
+                <option value="atom-one-dark">atom-one-dark</option>
+                <option value="atom-one-dark-reasonable">atom-one-dark-reasonable</option>
+                <option value="atom-one-light">atom-one-light</option>
+                <option value="brown-paper">brown-paper</option>
+                <option value="codepen-embed">codepen-embed</option>
+                <option value="color-brewer">color-brewer</option>
+                <option value="dark">dark</option>
+                <option value="default" selected>default</option>
+                <option value="devibeans">devibeans</option>
+                <option value="docco">docco</option>
+                <option value="far">far</option>
+                <option value="foundation">foundation</option>
+                <option value="github">github</option>
+                <option value="github-gist">github-gist</option>
+                <option value="gml">gml</option>
+                <option value="googlecode">googlecode</option>
+                <option value="gradient-dark">gradient-dark</option>
+                <option value="gradient-light">gradient-light</option>
+                <option value="grayscale">grayscale</option>
+                <option value="hybrid">hybrid</option>
+                <option value="idea">idea</option>
+                <option value="ir-black">ir-black</option>
+                <option value="isbl-editor-dark">isbl-editor-dark</option>
+                <option value="isbl-editor-light">isbl-editor-light</option>
+                <option value="kimbie-dark">kimbie-dark</option>
+                <option value="kimbie-light">kimbie-light</option>
+                <option value="lightfair">lightfair</option>
+                <option value="lioshi">lioshi</option>
+                <option value="magula">magula</option>
+                <option value="mono-blue">mono-blue</option>
+                <option value="monokai">monokai</option>
+                <option value="monokai-sublime">monokai-sublime</option>
+                <option value="night-owl">night-owl</option>
+                <option value="nnfx-dark">nnfx-dark</option>
+                <option value="nnfx-light">nnfx-light</option>
+                <option value="nord">nord</option>
+                <option value="obsidian">obsidian</option>
+                <option value="paraiso-dark">paraiso-dark</option>
+                <option value="paraiso-light">paraiso-light</option>
+                <option value="pojoaque">pojoaque</option>
+                <option value="purebasic">purebasic</option>
+                <option value="qtcreator-dark">qtcreator-dark</option>
+                <option value="qtcreator-light">qtcreator-light</option>
+                <option value="rainbow">rainbow</option>
+                <option value="routeros">routeros</option>
+                <option value="school-book">school-book</option>
+                <option value="shades-of-purple">shades-of-purple</option>
+                <option value="srcery">srcery</option>
+                <option value="stackoverflow-dark">stackoverflow-dark</option>
+                <option value="stackoverflow-light">stackoverflow-light</option>
+                <option value="sunburst">sunburst</option>
+                <option value="tomorrow-night-blue">tomorrow-night-blue</option>
+                <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                <option value="vs">vs</option>
+                <option value="vs2015">vs2015</option>
+                <option value="xcode">xcode</option>
+                <option value="xt256">xt256</option>
+                
+            </select>
+        </footer>
         <script src="setquery.js" type="module"></script>
+        <style id="highlightjs"></style>
         <style id="modify"></style>
     </body>
 </html>

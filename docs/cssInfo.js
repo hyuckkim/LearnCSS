@@ -4,11 +4,11 @@ export class CssInfo {
         this.syntexes = syntexes;
     }
     buildHTML() {
-        var result = `<div class="code pre"><span class="name">${this.name} {</span></div>`;
+        var result = `<div class="hljs-keyword"><span class="name">${this.name} {</span></div>`;
         this.syntexes.forEach(e => {
             result += e.buildHTML(this.name);
         });
-        result += `<div class="code"><span class="end">}</span></div>`;
+        result += `<div><span>}</span></div>`;
         return result;
     }
     buildCSS() {

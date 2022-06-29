@@ -2,7 +2,6 @@ import { CssInfo } from "./cssInfo.js";
 import { CssSyntex } from "./cssSyntex.js";
 import { CssRoot } from "./cssRoot.js";
 var textarea = document.getElementById("textarea");
-var style = document.getElementById("modify");
 var info = new CssRoot([
     new CssInfo("h1", [
         new CssSyntex("color", ["#000000"]),
@@ -17,7 +16,6 @@ var info = new CssRoot([
         new CssSyntex("border", ["1px", "solid", "#000000"]),
     ]),
     new CssInfo("article", [
-        new CssSyntex("color", ["inherit"]),
         new CssSyntex("background", ["#ffffff"]),
         new CssSyntex("border", ["1px", "solid", "#000000"]),
         new CssSyntex("width", ["500px"]),
@@ -32,6 +30,7 @@ function CallRewriteCss(code, data) {
     RewriteCss(code, data);
     ApplyCss();
 }
+var style = document.getElementById("modify");
 function ApplyCss() {
     style.innerText = info.buildCSS();
 }
@@ -42,4 +41,17 @@ function RewriteCss(code, data) {
     info.rewrite(split[0], split[1], Number.parseInt(split[2]), data);
 }
 window.rewrite = CallRewriteCss;
+var highlight = document.getElementById("highlightjs");
+var theme = document.getElementById("theme");
+function HighlightChanged() {
+    let url = `https://raw.githubusercontent.com/highlightjs/cdn-release/main/build/styles/${theme.selectedOptions[0].value}.min.css`;
+    let ajax = new XMLHttpRequest();
+    ajax.open("GET", url);
+    ajax.send();
+    ajax.onload = () => {
+        highlight.innerHTML = ajax.response;
+    };
+}
+window.changeTheme = HighlightChanged;
+HighlightChanged();
 bulidCssInfo();

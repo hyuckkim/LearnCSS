@@ -7,21 +7,20 @@ export class CssSyntex {
         this.contents = contents;
     }
     public buildHTML(root: string): string {
-        var result = `<div class="code syn">`;
+        var result = "";
 
-        result += `<span class="code fun">\u00A0\u00A0${this.name}:</span>`;
+        result += `<span class="hljs-attribute">\u00A0\u00A0${this.name}</span>:`;
 
         let i = 0;
         this.contents.forEach(e => {
             result += `<input 
-                class="code num"
+                class="hljs-number"
                 value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this.value);">
-            </input>`;
+                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this.value);">`;
             i++;
         });
 
-        result += `;</div>`;
+        result += ";\n";
         return result;
     }
     public buildCSS(): string {

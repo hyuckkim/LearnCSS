@@ -19,9 +19,6 @@
     top: auto;
     z-index: 3;
 }
-.footer { 
-    margin: 5px;
-}
 
 footer, header {
     bottom: 0;
@@ -41,7 +38,7 @@ html, body {
     margin: 49px 5px 39px 10px;
     border: solid #1e1e1e 5px;
     border-radius: 0 0 30px 0;
-    background-color: #1e1e1e;
+    /* background-color: #1e1e1e; */
     font-size: 12px;
 }
 #elementarea {
@@ -49,22 +46,14 @@ html, body {
     width: calc(100% - 300px);
     overflow: overlay;
 }
-.code {
-    font-size: 15px;
-    color: #ffffff;
-}
-.name, .end {
-    color: #e7e276;
-}
-.fun {
-    color: #9cdcdd;
-}
-.num {
-    color: #b5cea8;
-}
 
 input {
-    background-color: #1e1e1e;
-    border: #1e1e1e;
-    font-family: Lucida Console, Courier, monospace;
+    border:0px;
+    background-color:
+    transparent;
+    display: inline-block;
+}
+code, input {
+    font-family: "D2 Coding", Courier, "Courier New", "Lucida Console", Monaco;
+    font-size: 14px;
 }

@@ -3,7 +3,6 @@ import { CssSyntex } from "./cssSyntex.js";
 import { CssRoot } from "./cssRoot.js";
 
 var textarea = document.getElementById("textarea") as HTMLElement;
-var style = document.getElementById("modify") as HTMLStyleElement;
 var info = new CssRoot(
     [
         new CssInfo("h1",
@@ -37,6 +36,8 @@ function CallRewriteCss(code: string, data: string) {
     RewriteCss(code, data);
     ApplyCss();
 }
+
+var style = document.getElementById("modify") as HTMLStyleElement;
 function ApplyCss() {
     style.innerText = info.buildCSS();
 }
@@ -48,5 +49,20 @@ function RewriteCss(code: string, data: string) {
 }
 (window as any).rewrite = CallRewriteCss;
 
+var highlight = document.getElementById("highlightjs") as HTMLStyleElement;
+var theme = document.getElementById("theme") as HTMLSelectElement;
+function HighlightChanged() {
+    let url = `https://raw.githubusercontent.com/highlightjs/cdn-release/main/build/styles/${theme.selectedOptions[0].value}.min.css`;
+    let ajax = new XMLHttpRequest();
+    
+    ajax.open("GET", url);
+    ajax.send();
+
+    ajax.onload = () => {
+        highlight.innerHTML = ajax.response;
+    };
+}
+(window as any).changeTheme = HighlightChanged;
+HighlightChanged();
 
 bulidCssInfo();
