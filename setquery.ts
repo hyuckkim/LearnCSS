@@ -31,10 +31,19 @@ var info = new CssRoot(
 );
 function bulidCssInfo() {
     textarea.innerHTML = info.buildHTML();
+    setObjectEachSyntex(textarea);
     ApplyCss();
 }
-function CallRewriteCss(code: string, data: HTMLInputElement) {
-    RewriteCss(code, data);
+function setObjectEachSyntex(root: HTMLElement) {
+    root.querySelectorAll('input').forEach(element => {
+        let split = element.id.split('/');
+        if (split.length != 3) return;
+    
+        info.setObject(element, split[0], split[1], Number.parseInt(split[2]));
+    });
+}
+function CallRewriteCss(element: HTMLInputElement) {
+    RewriteCss(element.id);
     ApplyCss();
 }
 
@@ -42,11 +51,11 @@ var style = document.getElementById("modify") as HTMLStyleElement;
 function ApplyCss() {
     style.innerText = info.buildCSS();
 }
-function RewriteCss(code: string, data: HTMLInputElement) {
+function RewriteCss(code: string) {
     let split = code.split('/');
     if (split.length != 3) return;
 
-    info.rewrite(split[0], split[1], Number.parseInt(split[2]), data);
+    info.rewrite(split[0], split[1], Number.parseInt(split[2]));
 }
 (window as any).rewrite = CallRewriteCss;
 

@@ -2,6 +2,7 @@ export class CssSyntex {
     constructor(name, contents) {
         this.name = name;
         this.contents = contents;
+        this.object = Array(contents.length).fill(null);
     }
     buildHTML(root) {
         var result = "";
@@ -11,7 +12,9 @@ export class CssSyntex {
             result += `<input 
                 class="hljs-number"
                 value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this);">`;
+                style="width: ${Math.min(250, e.length * 12)}px;"
+                id="${root}/${this.name}/${i}"
+                onchange="rewrite(this);">`;
             i++;
         });
         result += ";\n";
@@ -25,8 +28,17 @@ export class CssSyntex {
         result += `;`;
         return result;
     }
-    rewrite(attributeNo, value) {
-        this.contents[attributeNo] = value.value;
-        value.style.width = `${Math.min(250, value.value.length * 12)}px`;
+    rewrite(attributeNo) {
+        if (this.object == null)
+            return;
+        let obj = this.object[attributeNo];
+        if (obj != null) {
+            this.contents[attributeNo] = obj.value;
+            obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
+        }
+    }
+    setObject(object, attributeNo) {
+        this.object[attributeNo] = object;
+        console.log(object);
     }
 }

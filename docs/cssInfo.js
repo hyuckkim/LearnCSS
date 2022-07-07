@@ -1,3 +1,4 @@
+import { CssSyntex } from "./cssSyntex.js";
 export class CssInfo {
     constructor(name, syntexes) {
         this.name = name;
@@ -19,11 +20,25 @@ export class CssInfo {
         result += `}`;
         return result;
     }
-    rewrite(syntex, attributeNo, value) {
+    rewrite(syntex, attributeNo) {
+        let child = this.getChildByName(syntex);
+        if (child instanceof CssSyntex) {
+            child.rewrite(attributeNo);
+        }
+    }
+    setObject(object, syntex, attributeNo) {
+        let child = this.getChildByName(syntex);
+        if (child instanceof CssSyntex) {
+            child.setObject(object, attributeNo);
+        }
+    }
+    getChildByName(name) {
+        let result = null;
         this.syntexes.forEach(e => {
-            if (e.name == syntex) {
-                e.rewrite(attributeNo, value);
+            if (e.name == name) {
+                result = e;
             }
         });
+        return result;
     }
 }

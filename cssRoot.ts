@@ -29,13 +29,30 @@ export class CssRoot {
     public rewrite(
         element: string, 
         syntex: string, 
-        attributeNo: number, 
-        value: HTMLInputElement) {
+        attributeNo: number) {
+            let child = this.getChildByName(element);
+            if (child instanceof CssInfo) {
+                child.rewrite(syntex, attributeNo);
+            }
+    }
+    public setObject(
+        object: HTMLInputElement,
+        element: string, 
+        syntex: string, 
+        attributeNo: number) {
+            let child = this.getChildByName(element);
+            if (child instanceof CssInfo) {
+                child.setObject(object, syntex, attributeNo);
+            }
+    }
+    getChildByName(name: string): CssInfo | null{
+        let result: CssInfo | null = null;
         this.data.forEach(e => {
-            if (e.name == element) {
-                e.rewrite(syntex, attributeNo, value);
+            if (e.name == name) {
+                result = e;
             }
         });
+        return result;
     }
 }
 /* Todo

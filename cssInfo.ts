@@ -25,11 +25,25 @@ export class CssInfo {
         result += `}`;
         return result;
     }
-    public rewrite(syntex: string, attributeNo: number, value: HTMLInputElement) {
+    public rewrite(syntex: string, attributeNo: number) {
+        let child = this.getChildByName(syntex);
+        if (child instanceof CssSyntex) {
+            child.rewrite(attributeNo);
+        }
+    }
+    public setObject(object: HTMLInputElement, syntex: string, attributeNo: number) {
+        let child = this.getChildByName(syntex);
+        if (child instanceof CssSyntex) {
+            child.setObject(object, attributeNo);
+        }
+    }
+    getChildByName(name: string): CssSyntex | null {
+        let result: CssSyntex | null = null;
         this.syntexes.forEach(e => {
-            if (e.name == syntex) {
-                e.rewrite(attributeNo, value);
+            if (e.name == name) {
+                result = e;
             }
         });
+        return result;
     }
 }

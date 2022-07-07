@@ -1,10 +1,12 @@
 export class CssSyntex {
     name: string;
     contents: string[];
+    object: [HTMLInputElement | null];
 
     constructor(name: string, contents: string[]) {
         this.name = name;
         this.contents = contents;
+        this.object = Array(contents.length).fill(null) as [null];
     }
     public buildHTML(root: string): string {
         var result = "";
@@ -16,7 +18,9 @@ export class CssSyntex {
             result += `<input 
                 class="hljs-number"
                 value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;" onchange="rewrite('${root}/${this.name}/${i}', this);">`;
+                style="width: ${Math.min(250, e.length * 12)}px;"
+                id="${root}/${this.name}/${i}"
+                onchange="rewrite(this);">`;
             i++;
         });
 
@@ -31,8 +35,15 @@ export class CssSyntex {
         result += `;`;
         return result;
     }
-    public rewrite(attributeNo: number, value: HTMLInputElement) {
-        this.contents[attributeNo] = value.value;
-        value.style.width = `${Math.min(250, value.value.length * 12)}px`;
+    public rewrite(attributeNo: number) {
+        if (this.object == null) return;
+        let obj = this.object[attributeNo];
+        if (obj != null) {
+            this.contents[attributeNo] = obj.value;
+            obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
+        }
+    }
+    public setObject(object: HTMLInputElement, attributeNo: number) {
+        this.object[attributeNo] = object;
     }
 }
