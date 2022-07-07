@@ -1,6 +1,7 @@
 import { CssInfo } from "./cssInfo.js";
 import { CssSyntex } from "./cssSyntex.js";
 import { CssRoot } from "./cssRoot.js";
+import { Theme } from "./ThemeChanger.js";
 
 var textarea = document.getElementById("textarea") as HTMLElement;
 var info = new CssRoot(
@@ -51,16 +52,9 @@ function RewriteCss(code: string, data: HTMLInputElement) {
 
 var highlight = document.getElementById("highlightjs") as HTMLStyleElement;
 var theme = document.getElementById("theme") as HTMLSelectElement;
-function HighlightChanged() {
-    let url = `https://raw.githubusercontent.com/highlightjs/cdn-release/main/build/styles/${theme.selectedOptions[0].value}.min.css`;
-    let ajax = new XMLHttpRequest();
-    
-    ajax.open("GET", url);
-    ajax.send();
-
-    ajax.onload = () => {
-        highlight.innerHTML = ajax.response;
-    };
+async function HighlightChanged() {
+    let themeCss = await Theme.getThemeCss(theme.selectedOptions[0].value);
+    highlight.innerHTML = themeCss;
 }
 (window as any).changeTheme = HighlightChanged;
 HighlightChanged();

@@ -1,6 +1,16 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { CssInfo } from "./cssInfo.js";
 import { CssSyntex } from "./cssSyntex.js";
 import { CssRoot } from "./cssRoot.js";
+import { Theme } from "./ThemeChanger.js";
 var textarea = document.getElementById("textarea");
 var info = new CssRoot([
     new CssInfo("h1", [
@@ -44,13 +54,10 @@ window.rewrite = CallRewriteCss;
 var highlight = document.getElementById("highlightjs");
 var theme = document.getElementById("theme");
 function HighlightChanged() {
-    let url = `https://raw.githubusercontent.com/highlightjs/cdn-release/main/build/styles/${theme.selectedOptions[0].value}.min.css`;
-    let ajax = new XMLHttpRequest();
-    ajax.open("GET", url);
-    ajax.send();
-    ajax.onload = () => {
-        highlight.innerHTML = ajax.response;
-    };
+    return __awaiter(this, void 0, void 0, function* () {
+        let themeCss = yield Theme.getThemeCss(theme.selectedOptions[0].value);
+        highlight.innerHTML = themeCss;
+    });
 }
 window.changeTheme = HighlightChanged;
 HighlightChanged();
