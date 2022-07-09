@@ -25,8 +25,8 @@ p {
 article {
     background: #ffffff;
     border: 1px solid #000000;
-    width: width 500px;
-    height: height 500px;
+    width: 500px;
+    height: 500px;
 }`);
 function bulidCssInfo() {
     textarea.innerHTML = info.buildHTML();
