@@ -1,14 +1,12 @@
-import { cssClulster } from "./cssCluster";
+import { cssCluster } from "./cssCluster";
 
 export class CssSyntex {
     name: string;
-    contents: cssClulster[];
-    object: [HTMLInputElement | null];
+    contents: Array<{name: cssCluster, object: HTMLInputElement | null}>;
 
-    constructor(name: string, contents: cssClulster[]) {
+    constructor(name: string, contents: cssCluster[]) {
         this.name = name;
-        this.contents = contents;
-        this.object = Array(contents.length).fill(null) as [null];
+        this.contents = contents.map(c => {return {name: c, object: null};});
     }
     public buildHTML(root: string): string {
         var result = "";
@@ -19,8 +17,8 @@ export class CssSyntex {
         this.contents.forEach(e => {
             result += `<input 
                 class="hljs-number"
-                value="${e.value}" 
-                style="width: ${Math.min(250, e.value.length * 12)}px;"
+                value="${e.name.value}" 
+                style="width: ${Math.min(250, e.name.value.length * 12)}px;"
                 id="${root}/${this.name}/${i}"
                 onchange="rewrite(this);">`;
             i++;
@@ -32,20 +30,19 @@ export class CssSyntex {
     public buildCSS(): string {
         var result = `${this.name}:`;
         this.contents.forEach(e => {
-            result += ` ${e.value}`;
+            result += ` ${e.name.value}`;
         });
         result += `;`;
         return result;
     }
     public rewrite(attributeNo: number) {
-        if (this.object == null) return;
-        let obj = this.object[attributeNo];
+        let obj = this.contents[attributeNo].object;
         if (obj != null) {
-            this.contents[attributeNo].value = obj.value;
+            this.contents[attributeNo].name.value = obj.value;
             obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
         }
     }
     public setObject(object: HTMLInputElement, attributeNo: number) {
-        this.object[attributeNo] = object;
+        this.contents[attributeNo].object = object;
     }
 }
