@@ -1,4 +1,4 @@
-import { cssClulster } from "./cssCluster.js";
+import { cssCluster } from "./cssCluster.js";
 import { CssInfo } from "./cssInfo.js";
 import { CssRoot } from "./cssRoot.js";
 import { CssSyntex } from "./cssSyntex.js";
@@ -14,7 +14,7 @@ export class CssBuilder {
                 let syntex = this.findNamedSyntex(b.value);
                 return new CssInfo(b.name, syntex.map(s => {
                     return new CssSyntex(s.name,  s.value.map(v => {
-                        return new cssClulster(v);
+                        return cssCluster.generate(v);
                         }));
                     }));
             })
