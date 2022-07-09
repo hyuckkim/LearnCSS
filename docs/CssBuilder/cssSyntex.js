@@ -11,8 +11,8 @@ export class CssSyntex {
         this.contents.forEach(e => {
             result += `<input 
                 class="hljs-number"
-                value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;"
+                value="${e.value}" 
+                style="width: ${Math.min(250, e.value.length * 12)}px;"
                 id="${root}/${this.name}/${i}"
                 onchange="rewrite(this);">`;
             i++;
@@ -23,7 +23,7 @@ export class CssSyntex {
     buildCSS() {
         var result = `${this.name}:`;
         this.contents.forEach(e => {
-            result += ` ${e}`;
+            result += ` ${e.value}`;
         });
         result += `;`;
         return result;
@@ -33,12 +33,11 @@ export class CssSyntex {
             return;
         let obj = this.object[attributeNo];
         if (obj != null) {
-            this.contents[attributeNo] = obj.value;
+            this.contents[attributeNo].value = obj.value;
             obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
         }
     }
     setObject(object, attributeNo) {
         this.object[attributeNo] = object;
-        console.log(object);
     }
 }

@@ -1,18 +1,23 @@
 import { CssSyntex } from "./cssSyntex.js";
+
 export class CssInfo {
-    constructor(name, syntexes) {
+    name: string;
+    syntexes: CssSyntex[];
+
+    constructor(name: string, syntexes: CssSyntex[]) {
         this.name = name;
         this.syntexes = syntexes;
     }
-    buildHTML() {
-        var result = `<div class="hljs-keyword"><span class="name">${this.name} {</span></div>`;
+
+    public buildHTML(): string {
+        var result = `<div class="hljs-keyword"><span class="name">${this.name}</span> {</div>`;
         this.syntexes.forEach(e => {
             result += e.buildHTML(this.name);
         });
         result += `<div><span>}</span></div>`;
         return result;
     }
-    buildCSS() {
+    public buildCSS(): string {
         var result = `${this.name} {`;
         this.syntexes.forEach(e => {
             result += e.buildCSS();
@@ -20,20 +25,20 @@ export class CssInfo {
         result += `}`;
         return result;
     }
-    rewrite(syntex, attributeNo) {
+    public rewrite(syntex: string, attributeNo: number) {
         let child = this.getChildByName(syntex);
         if (child instanceof CssSyntex) {
             child.rewrite(attributeNo);
         }
     }
-    setObject(object, syntex, attributeNo) {
+    public setObject(object: HTMLInputElement, syntex: string, attributeNo: number) {
         let child = this.getChildByName(syntex);
         if (child instanceof CssSyntex) {
             child.setObject(object, attributeNo);
         }
     }
-    getChildByName(name) {
-        let result = null;
+    getChildByName(name: string): CssSyntex | null {
+        let result: CssSyntex | null = null;
         this.syntexes.forEach(e => {
             if (e.name == name) {
                 result = e;

@@ -1,9 +1,11 @@
+import { cssClulster } from "./cssCluster";
+
 export class CssSyntex {
     name: string;
-    contents: string[];
+    contents: cssClulster[];
     object: [HTMLInputElement | null];
 
-    constructor(name: string, contents: string[]) {
+    constructor(name: string, contents: cssClulster[]) {
         this.name = name;
         this.contents = contents;
         this.object = Array(contents.length).fill(null) as [null];
@@ -17,8 +19,8 @@ export class CssSyntex {
         this.contents.forEach(e => {
             result += `<input 
                 class="hljs-number"
-                value="${e}" 
-                style="width: ${Math.min(250, e.length * 12)}px;"
+                value="${e.value}" 
+                style="width: ${Math.min(250, e.value.length * 12)}px;"
                 id="${root}/${this.name}/${i}"
                 onchange="rewrite(this);">`;
             i++;
@@ -30,7 +32,7 @@ export class CssSyntex {
     public buildCSS(): string {
         var result = `${this.name}:`;
         this.contents.forEach(e => {
-            result += ` ${e}`;
+            result += ` ${e.value}`;
         });
         result += `;`;
         return result;
@@ -39,7 +41,7 @@ export class CssSyntex {
         if (this.object == null) return;
         let obj = this.object[attributeNo];
         if (obj != null) {
-            this.contents[attributeNo] = obj.value;
+            this.contents[attributeNo].value = obj.value;
             obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
         }
     }
