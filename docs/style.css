@@ -33,7 +33,7 @@ html, body {
     overflow: hidden;
 }
 
-#textarea {
+#csspanel {
     width: 300px;
     margin: 49px 5px 39px 10px;
     border: solid #1e1e1e 5px;

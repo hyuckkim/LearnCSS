@@ -1,7 +1,7 @@
 import { Theme } from "./ThemeChanger.js";
 import { CssBuilder } from "./CssBuilder/cssBuilder.js";
 
-var textarea = document.getElementById("textarea") as HTMLElement;
+var csspanel = document.getElementById("csspanel") as HTMLElement;
 var info = CssBuilder.build(`h1 {
     color: #000000;
     background: #e2e2e2;
@@ -21,8 +21,8 @@ article {
     height: 500px;
 }`);
 function bulidCssInfo() {
-    textarea.innerHTML = info.buildHTML();
-    setObjectEachSyntex(textarea);
+    csspanel.innerHTML = info.buildHTML();
+    setObjectEachSyntex(csspanel);
     ApplyCss();
 }
 function setObjectEachSyntex(root: HTMLElement) {
