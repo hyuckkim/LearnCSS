@@ -57,6 +57,11 @@ async function HighlightChanged() {
     highlight.innerHTML = themeCss;
 }
 (window as any).changeTheme = HighlightChanged;
+function setRandomize() {
+    info.randomize();
+    ApplyCss();
+}
+(window as any).setRandomize = setRandomize;
 HighlightChanged();
 
 bulidCssInfo();

@@ -36,7 +36,7 @@ export class bgCluster extends cssCluster {
         this.value = `${v}px`;
     }
 }
-export class bordercluster extends cssCluster {
+export class borderCluster extends cssCluster {
     randomize() {
         let v = Random.Int(1, 10);
         this.value = `${v}px`;

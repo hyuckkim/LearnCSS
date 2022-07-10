@@ -65,5 +65,10 @@ function HighlightChanged() {
     });
 }
 window.changeTheme = HighlightChanged;
+function setRandomize() {
+    info.randomize();
+    ApplyCss();
+}
+window.setRandomize = setRandomize;
 HighlightChanged();
 bulidCssInfo();

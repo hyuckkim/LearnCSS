@@ -42,6 +42,11 @@ export class CssRoot {
         });
         return result;
     }
+    randomize() {
+        this.data.forEach(e => {
+            e.randomize();
+        });
+    }
 }
 /* Todo
 {"utf8": "✓",

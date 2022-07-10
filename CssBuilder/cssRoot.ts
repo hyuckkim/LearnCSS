@@ -54,6 +54,11 @@ export class CssRoot {
         });
         return result;
     }
+    public randomize() {
+        this.data.forEach(e => {
+            e.randomize();
+        })
+    }
 }
 /* Todo
 {"utf8": "✓",

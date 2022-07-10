@@ -45,4 +45,11 @@ export class CssSyntex {
     public setObject(object: HTMLInputElement, attributeNo: number) {
         this.contents[attributeNo].object = object;
     }
+    public randomize() {
+        this.contents.forEach(e => {
+            e.name.randomize();
+            if (e.object instanceof HTMLInputElement)
+            e.object.value = e.name.value;
+        })
+    }
 }

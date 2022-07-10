@@ -57,3 +57,7 @@ code, input {
     font-family: "D2 Coding", Courier, "Courier New", "Lucida Console", Monaco;
     font-size: 14px;
 }
+#randomize {
+    border: 1px solid #000;
+    cursor: pointer;
+}

@@ -1,8 +1,7 @@
 export class CssSyntex {
     constructor(name, contents) {
         this.name = name;
-        this.contents = contents;
-        this.object = Array(contents.length).fill(null);
+        this.contents = contents.map(c => { return { name: c, object: null }; });
     }
     buildHTML(root) {
         var result = "";
@@ -11,8 +10,8 @@ export class CssSyntex {
         this.contents.forEach(e => {
             result += `<input 
                 class="hljs-number"
-                value="${e.value}" 
-                style="width: ${Math.min(250, e.value.length * 12)}px;"
+                value="${e.name.value}" 
+                style="width: ${Math.min(250, e.name.value.length * 12)}px;"
                 id="${root}/${this.name}/${i}"
                 onchange="rewrite(this);">`;
             i++;
@@ -23,21 +22,26 @@ export class CssSyntex {
     buildCSS() {
         var result = `${this.name}:`;
         this.contents.forEach(e => {
-            result += ` ${e.value}`;
+            result += ` ${e.name.value}`;
         });
         result += `;`;
         return result;
     }
     rewrite(attributeNo) {
-        if (this.object == null)
-            return;
-        let obj = this.object[attributeNo];
+        let obj = this.contents[attributeNo].object;
         if (obj != null) {
-            this.contents[attributeNo].value = obj.value;
+            this.contents[attributeNo].name.value = obj.value;
             obj.style.width = `${Math.min(250, obj.value.length * 12)}px`;
         }
     }
     setObject(object, attributeNo) {
-        this.object[attributeNo] = object;
+        this.contents[attributeNo].object = object;
+    }
+    randomize() {
+        this.contents.forEach(e => {
+            e.name.randomize();
+            if (e.object instanceof HTMLInputElement)
+                e.object.value = e.name.value;
+        });
     }
 }

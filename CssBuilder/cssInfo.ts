@@ -46,4 +46,9 @@ export class CssInfo {
         });
         return result;
     }
+    public randomize() {
+        this.syntexes.forEach(e => {
+            e.randomize();
+        })
+    }
 }
